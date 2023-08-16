@@ -1,0 +1,36 @@
+{
+  "name": "ask-metrics-v2",
+  "version": "0.1.0",
+  "description": "ASK SMAPI Client for Metrics v2",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ilovelinux/ask-metrics-v2.git"
+  },
+  "keywords": [
+    "ask",
+    "metrics",
+    "alexa",
+    "amazon",
+    "smapi",
+    "smapi",
+    "client"
+  ],
+  "author": "ilovelinux",
+  "license": "LGPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/ilovelinux/ask-metrics-v2/issues"
+  },
+  "homepage": "https://github.com/ilovelinux/ask-metrics-v2#readme",
+  "devDependencies": {
+    "@types/node": "^20.5.0",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "ask-smapi-sdk": "^1.3.0"
+  }
+}

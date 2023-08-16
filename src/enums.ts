@@ -1,0 +1,144 @@
+export enum AggregationPeriod {
+  SINGLE = "SINGLE",
+  BY_HOUR = "BY_HOUR",
+  BY_DAY = "BY_DAY",
+  BY_WEEK = "BY_WEEK",
+  BY_15 = "BY_15",
+}
+
+export enum Stat {
+  count = "count",
+  avg = "avg",
+  p50 = "p50",
+  p90 = "p90",
+  p99 = "p99",
+}
+
+export namespace Metrics {
+  export type AnyName =
+    | Exclude<Custom, "namespace">
+    | Exclude<SmartHome, "namespace">
+    | Exclude<AccountActivationEvents, "namespace">
+    | Exclude<Music, "namespace">
+    | Exclude<SkillEnablementEvents, "namespace">
+    | Exclude<EstimatedTurnError, "namespace">
+    | Exclude<SkillQuality, "namespace">
+    | Exclude<SkillInvocations, "namespace">
+    | Exclude<Automation, "namespace">;
+
+  export type AnyNamespace =
+    | Custom.namespace
+    | SmartHome.namespace
+    | AccountActivationEvents.namespace
+    | Music.namespace
+    | SkillEnablementEvents.namespace
+    | EstimatedTurnError.namespace
+    | SkillQuality.namespace
+    | SkillInvocations.namespace
+    | Automation.namespace;
+
+  export enum Custom {
+    namespace = "Alexa.Custom",
+    CUSTOMERS = "CUSTOMERS",
+    SUCCESSFUL_SESSIONS = "SUCCESSFUL_SESSIONS",
+    ACTIVE_SESSIONS = "ACTIVE_SESSIONS",
+    ACTIVE_SESSIONS_PER_CUSTOMER = "ACTIVE_SESSIONS_PER_CUSTOMER",
+    ENDED_SESSIONS = "ENDED_SESSIONS",
+    USER_ENDED_SESSIONS = "USER_ENDED_SESSIONS",
+    SKILL_ENDED_SESSIONS = "SKILL_ENDED_SESSIONS",
+    DIFF_ACTIVE_SESSIONS_ENDED_SESSIONS = "DIFF_ACTIVE_SESSIONS_ENDED_SESSIONS",
+    UTTERANCES = "UTTERANCES",
+    SUCCESSFUL_UTTERANCES = "SUCCESSFUL_UTTERANCES",
+    UTTERANCES_PER_CUSTOMER = "UTTERANCES_PER_CUSTOMER",
+    UTTERANCES_PER_ACTIVE_SESSION = "UTTERANCES_PER_ACTIVE_SESSION",
+    FAILED_UTTERANCES = "FAILED_UTTERANCES",
+    FAILED_UTTERANCES_SESSION = "FAILED_UTTERANCES_SESSION",
+    USER_RESPONDED = "USER_RESPONDED",
+    USER_DID_NOT_RESPOND = "USER_DID_NOT_RESPOND",
+    INTENT_CLASSIFICATION = "INTENT_CLASSIFICATION",
+    SKILL_LATENCY = "SKILL_LATENCY",
+  }
+
+  export enum SmartHome {
+    namespace = "Alexa.SmartHome",
+    CUSTOMERS = "CUSTOMERS",
+    UTTERANCES = "UTTERANCES",
+    UTTERANCES_PER_CUSTOMER = "UTTERANCES_PER_CUSTOMER",
+  }
+
+  export enum AccountActivationEvents {
+    namespace = "Alexa.AccountActivationEvents",
+    USERS = "USERS",
+    EVENTS = "EVENTS",
+    ALEXA_APP_USERS = "ALEXA_APP_USERS",
+    ALEXA_APP_EVENTS = "ALEXA_APP_EVENTS",
+    ALEXA_APP_INITIATIONS_PER_USER = "ALEXA_APP_INITIATIONS_PER_USER",
+    APP_TO_APP_USERS = "APP_TO_APP_USERS",
+    APP_TO_APP_EVENTS = "APP_TO_APP_EVENTS",
+    APP_TO_APP_COMPLETION_RATE = "APP_TO_APP_COMPLETION_RATE",
+    APP_TO_APP_INITIATIONS_PER_USER = "APP_TO_APP_INITIATIONS_PER_USER",
+    TOTAL_COMPLETION_RATE = "TOTAL_COMPLETION_RATE",
+  }
+
+  export enum Music {
+    namespace = "Alexa.Music",
+    CUSTOMERS = "CUSTOMERS",
+    FRICTION_RATE = "FRICTION_RATE",
+    TOP_MEDIA_CONTENT = "TOP_MEDIA_CONTENT",
+    SUCCESSFUL_PLAYBACK_RATE = "SUCCESSFUL_PLAYBACK_RATE",
+    PLAY_QUEUES = "PLAY_QUEUES",
+    PLAY_QUEUE_DURATION = "PLAY_QUEUE_DURATION",
+    AVERAGE_PLAY_QUEUE_DURATION = "AVERAGE_PLAY_QUEUE_DURATION",
+    AVERAGE_PLAY_QUEUES_PER_CUSTOMER = "AVERAGE_PLAY_QUEUES_PER_CUSTOMER",
+    AVERAGE_PLAY_QUEUE_DURATION_PER_CUSTOMER = "AVERAGE_PLAY_QUEUE_DURATION_PER_CUSTOMER",
+  }
+
+  export enum SkillEnablementEvents {
+    namespace = "Alexa.SkillEnablementEvents",
+    USERS = "USERS",
+  }
+
+  export enum EstimatedTurnError {
+    namespace = "Alexa.EstimatedTurnError",
+    PREDICTED_UTTERANCES = "PREDICTED_UTTERANCES",
+    EVALUATED_UTTERANCES = "EVALUATED_UTTERANCES",
+    FUD_FAILURE_PERCENTILES = "FUD_FAILURE_PERCENTILES",
+    FAILURE_PREDICTION_OFFSET = "FAILURE_PREDICTION_OFFSET",
+  }
+
+  export enum SkillQuality {
+    namespace = "Alexa.SkillQuality",
+    UTTERANCES = "UTTERANCES",
+    DEFECTIVE_UTTERANCES = "DEFECTIVE_UTTERANCES",
+    EVALUATED_UTTERANCES = "EVALUATED_UTTERANCES",
+    DEFECTIVE_BARGE_INS = "DEFECTIVE_BARGE_INS",
+    DEFECTIVE_BARGE_IN_RATE = "DEFECTIVE_BARGE_IN_RATE",
+    FUD_DEFECTIVE_BARGE_INS = "FUD_DEFECTIVE_BARGE_INS",
+    DEFECTIVE_REPHRASE = "DEFECTIVE_REPHRASE",
+    DEFECTIVE_TERMINATION = "DEFECTIVE_TERMINATION",
+    FUD_DEFECTS = "FUD_DEFECTS",
+    FUD_DEFECTIVE_TERMINATION = "FUD_DEFECTIVE_TERMINATION",
+    UNHANDLED_REQUEST = "UNHANDLED_REQUEST",
+    FRICTION_RATE_BASELINE_OFFSET = "FRICTION_RATE_BASELINE_OFFSET",
+    DEFECTIVE_TERMINATION_RATE = "DEFECTIVE_TERMINATION_RATE",
+    UNHANDLED_REQUEST_RATE = "UNHANDLED_REQUEST_RATE",
+  }
+
+  export enum SkillInvocations {
+    namespace = "Alexa.SkillInvocations",
+    TRAFFIC = "TRAFFIC",
+    NAME_FREE_INVOCATIONS = "NAME_FREE_INVOCATIONS",
+    FUD_NAME_FREE_INVOCATIONS = "FUD_NAME_FREE_INVOCATIONS",
+    DIRECT_INVOCATIONS = "DIRECT_INVOCATIONS",
+    ONE_SHOT_INVOCATIONS = "ONE_SHOT_INVOCATIONS",
+    ROUTINES_INVOCATIONS = "ROUTINES_INVOCATIONS",
+    QUICK_LINKS_INVOCATIONS = "QUICK_LINKS_INVOCATIONS",
+    SKILL_CONNECTION_INVOCATIONS = "SKILL_CONNECTION_INVOCATIONS",
+  }
+
+  export enum Automation {
+    namespace = "Alexa.Automation",
+    AUTOMATION_ORIGINATION = "AUTOMATION_ORIGINATION",
+    AUTOMATION_EXECUTION = "AUTOMATION_EXECUTION",
+  }
+}
