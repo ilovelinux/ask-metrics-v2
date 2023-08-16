@@ -43,11 +43,11 @@ const refreshTokenConfig: RefreshTokenConfig = {
 
 void main() {
   // Setup client
-  const client = createClient(refreshTokenConfig, "Test");
+  const client = createClient(refreshTokenConfig);
 
   // Create request options
   const requestOptions: MetricsV2RequestOptions = {
-    startTime: Date.now()-1000*60*60*24*30,
+    startTime: Date.now()-1000*60*60*24*30, // 30 days before
     endTime: Date.now(),
     metricQueries: [
       {
