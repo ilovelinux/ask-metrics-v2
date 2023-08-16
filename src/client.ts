@@ -25,7 +25,7 @@ export function createClient(
   return new CustomSkillManagementServiceClient(
     apiConfiguration,
     refreshTokenConfig,
-    null
+    customUserAgent,
   );
 }
 
@@ -61,12 +61,10 @@ export class CustomSkillManagementServiceClient extends BaseServiceClient {
       authenticationConfiguration,
       grantType: "refresh_token",
     });
-    this.userAgent =
-      customUserAgent ??
-      createUserAgent(
-        "Test", // `${require("./package.json").version}`,
-        customUserAgent
-      );
+    this.userAgent = createUserAgent(
+      `${require("../package.json").version}`,
+      customUserAgent
+    );
   }
 
   protected async callGetSkillMetricsV2(
