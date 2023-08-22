@@ -1,8 +1,8 @@
 import { AggregationPeriod, Metrics, Stat } from "./enums";
 
 export class MetricsV2RequestOptions {
-    startTime: number | Date;
-    endTime: number | Date;
+    startTime: number;
+    endTime: number;
     maxResultsPerQuery?: number;
     nextToken?: string;
     metricQueries: Array<MetricQuery>;
