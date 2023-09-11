@@ -13,7 +13,7 @@ export class MetricQuery {
     label?: string;
     name: Metrics.AnyName;
     metricNamespace: Metrics.AnyNamespace;
-    groupBy?: Object;
+    groupBy?: String;
     aggregationPeriod: AggregationPeriod;
     stat?: Stat;
     dimensions?: Array<Dimension>;
