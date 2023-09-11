@@ -7,7 +7,12 @@ import {
   createUserAgent,
   ApiResponse,
 } from "ask-sdk-model-runtime";
-import { MetricsV2RequestOptions, MetricsV2Response } from "./models";
+import {
+  ListMetricsV2RequestOptions,
+  ListMetricsV2Response,
+  MetricsV2RequestOptions,
+  MetricsV2Response,
+} from "./models";
 import { RefreshTokenConfig } from "ask-smapi-sdk";
 
 const DEFAULT_API_ENDPOINT = "https://api.amazonalexa.com";
@@ -100,10 +105,44 @@ export class CustomSkillManagementServiceClient extends BaseServiceClient {
     skillId: string,
     options: MetricsV2RequestOptions
   ): Promise<MetricsV2Response> {
-    const apiResponse: ApiResponse = await this.callGetSkillMetricsV2(
-      skillId,
-      options
-    );
+    const apiResponse = await this.callGetSkillMetricsV2(skillId, options);
     return apiResponse.body as MetricsV2Response;
+  }
+
+  protected async callGetListMetricsV2(
+    options: ListMetricsV2RequestOptions
+  ): Promise<ApiResponse> {
+    const accessToken: string = await this.lwaServiceClient.getAccessToken();
+    const authorizationValue = "Bearer " + accessToken;
+
+    const headerParams: Array<{ key: string; value: string }> = [
+      { key: "Authorization", value: authorizationValue },
+      { key: "User-Agent", value: this.userAgent },
+    ];
+
+    const queryParams = Object.entries(options).map(([key, value]) => ({
+      key,
+      value,
+    }));
+
+    const resourcePath: string = "/v2/skills/metrics";
+
+    return this.invoke(
+      "GET",
+      this.apiConfiguration.apiEndpoint,
+      resourcePath,
+      null,
+      queryParams,
+      headerParams,
+      null,
+      errorDefinitions
+    );
+  }
+
+  async getListMetricsV2(
+    options: ListMetricsV2RequestOptions
+  ): Promise<ListMetricsV2Response> {
+    const apiResponse = await this.callGetListMetricsV2(options);
+    return apiResponse.body as ListMetricsV2Response;
   }
 }

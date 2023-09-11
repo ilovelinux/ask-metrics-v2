@@ -48,3 +48,21 @@ export class GroupedBy {
     groupedByField: string;
     groupedByValue: string;
 }
+
+export class ListMetricsV2RequestOptions {
+    metricNamespace: Metrics.AnyNamespace;
+    maxResults?: number;
+    nextToken?: string;
+}
+
+export class ListMetricsV2Response {
+    paginationContext?: {nextToken: string};
+    metrics: Array<Metric>;
+}
+
+export class Metric {
+    name: string;
+    supportedDimensions: Array<string>;
+    supportedGroupByOptions: Array<string>;
+    supportedStats: Array<Stat>;
+}
