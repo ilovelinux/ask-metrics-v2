@@ -21,13 +21,14 @@ For refresh token, see [ASK Smapi SDK Documentation](https://github.com/alexa/al
 ## Edxample
 
 ```typescript
+// test.ts
 import {
   RefreshTokenConfig,
   createClient,
   AggregationPeriod,
   Metrics,
-  Stat,
   MetricsV2RequestOptions,
+  ListMetricsV2RequestOptions,
 } from "ask-metrics-v2";
 
 // Skill ID to fetch metrics for
@@ -44,6 +45,18 @@ const refreshTokenConfig: RefreshTokenConfig = {
 void main() {
   // Setup client
   const client = createClient(refreshTokenConfig);
+
+  // Create request options
+  const requestListOptions: ListMetricsV2RequestOptions = {
+    metricNamespace: Metrics.Custom.namespace,
+  };
+
+  // Get list metrics
+  const listMetrics = await client.getListMetricsV2(requestListOptions);
+
+  // Print list metrics
+  console.log('List Metrics:');
+  console.log(JSON.stringify(listMetrics, null, 2));
 
   // Create request options
   const requestOptions: MetricsV2RequestOptions = {
